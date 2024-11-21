@@ -1,13 +1,13 @@
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
-const UsuarioRepository = require('../repositories/UsuarioRepository')
+import jwt from 'jsonwebtoken'
+import { compare } from 'bcrypt'
+import UsuarioRepository from '../repositories/UsuarioRepository.js'
 
 class AuthService {
   async login (email, password) {
     const usuario = await UsuarioRepository.findByEmail(email)
     if (!usuario) throw new Error('El usuario o la contraseña son incorrectos.')
 
-    const passwordMatch = await bcrypt.compare(password, usuario.password)
+    const passwordMatch = await compare(password, usuario.password)
     if (!passwordMatch) throw new Error('El usuario o la contraseña son incorrectos.')
 
     const token = jwt.sign(
@@ -20,4 +20,4 @@ class AuthService {
   }
 }
 
-module.exports = new AuthService()
+export default new AuthService()

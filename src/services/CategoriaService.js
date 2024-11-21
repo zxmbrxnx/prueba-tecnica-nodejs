@@ -1,25 +1,25 @@
-const categoriaRepo = require('../repositories/CategoriaRepository')
+import CategoriaRepository from '../repositories/CategoriaRepository.js'
 
 class CategoriaService {
   async getAllCategorias () {
-    return await categoriaRepo.findAll()
+    return await CategoriaRepository.findAll()
   }
 
   async createCategoria (data) {
-    return await categoriaRepo.create(data)
+    return await CategoriaRepository.create(data)
   }
 
   async getCategoriaById (id) {
-    return await categoriaRepo.findById(id)
+    return await CategoriaRepository.findById(id)
   }
 
   async updateCategoria (id, data) {
-    return await categoriaRepo.update(id, data)
+    return await CategoriaRepository.update(id, data)
   }
 
   async deleteCategoria (id) {
-    return await categoriaRepo.delete(id)
+    return await CategoriaRepository.deleteCategoria(id)
   }
 }
 
-module.exports = new CategoriaService()
+export default new CategoriaService()

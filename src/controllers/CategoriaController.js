@@ -1,4 +1,4 @@
-const categoriaService = require('../services/CategoriaService')
+import categoriaService from '../services/CategoriaService.js'
 
 class CategoriaController {
   async getAll (req, res) {

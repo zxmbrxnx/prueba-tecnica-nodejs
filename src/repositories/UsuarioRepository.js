@@ -1,9 +1,9 @@
-const { Usuario } = require('../../models') // Modelo Sequelize
+import db from '../../models/index.js'
 
 class UsuarioRepository {
   async findByEmail (email) {
-    return await Usuario.findOne({ where: { email } })
+    return await db.Usuario.findOne({ where: { email } })
   }
 }
 
-module.exports = new UsuarioRepository()
+export default new UsuarioRepository()

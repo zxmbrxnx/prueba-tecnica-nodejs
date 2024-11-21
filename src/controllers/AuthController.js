@@ -1,4 +1,4 @@
-const AuthService = require('../services/AuthService')
+import AuthService from '../services/AuthService.js'
 
 class AuthController {
   async login (req, res) {
@@ -12,4 +12,4 @@ class AuthController {
   }
 }
 
-module.exports = new AuthController()
+export default new AuthController()

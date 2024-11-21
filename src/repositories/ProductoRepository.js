@@ -1,10 +1,10 @@
-const { Producto, Categoria } = require('../../models')
+import db from '../../models/index.js'
 
 class ProductoRepository {
   async findAll () {
-    return await Producto.findAll({
+    return await db.Producto.findAll({
       include: {
-        model: Categoria,
+        model: db.Categoria,
         as: 'categoria',
         attributes: ['id', 'nombre']
       }
@@ -12,20 +12,20 @@ class ProductoRepository {
   }
 
   async create (data) {
-    return await Producto.create(data)
+    return await db.Producto.create(data)
   }
 
   async findById (id) {
-    return await Producto.findByPk(id)
+    return await db.Producto.findByPk(id)
   }
 
   async update (id, data) {
-    return await Producto.update(data, { where: { id } })
+    return await db.Producto.update(data, { where: { id } })
   }
 
   async delete (id) {
-    return await Producto.destroy({ where: { id } })
+    return await db.Producto.destroy({ where: { id } })
   }
 }
 
-module.exports = new ProductoRepository()
+export default new ProductoRepository()

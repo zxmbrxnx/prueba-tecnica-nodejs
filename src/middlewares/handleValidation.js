@@ -8,4 +8,4 @@ const handleValidation = (schema) => (req, res, next) => {
   next()
 }
 
-module.exports = handleValidation
+export default handleValidation

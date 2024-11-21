@@ -1,7 +1,7 @@
-const Joi = require('joi')
+import Joi from 'joi'
 
 // Esquema de validación para Producto
-const productSchemaCreate = Joi.object({
+export const productSchemaCreate = Joi.object({
   nombre: Joi.string()
     .min(1) // El nombre debe tener al menos 1 carácter
     .required()
@@ -38,7 +38,7 @@ const productSchemaCreate = Joi.object({
     })
 })
 
-const productSchemaUpdate = Joi.object({
+export const productSchemaUpdate = Joi.object({
   nombre: Joi.string()
     .min(1) // El nombre debe tener al menos 1 carácter
     .messages({
@@ -66,8 +66,3 @@ const productSchemaUpdate = Joi.object({
       'number.base': 'El campo "categoriaId" debe ser un número entero.'
     })
 })
-
-module.exports = {
-  productSchemaCreate,
-  productSchemaUpdate
-}

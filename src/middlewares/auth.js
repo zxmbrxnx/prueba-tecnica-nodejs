@@ -1,12 +1,27 @@
-const jwt = require('jsonwebtoken')
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 const secret = process.env.JWT_SECRET
 
-module.exports = (req, res, next) => {
-  const token = req.headers.authorization
-  if (!token) return res.status(403).json({ message: 'Token requerido' })
+export default (req, res, next) => {
+  const authHeader = req.headers.authorization
 
-  jwt.verify(token.split(' ')[1], secret, (err, user) => {
-    if (err) return res.status(403).json({ message: 'Token inválido' })
+  if (!authHeader) {
+    return res.status(403).json({ message: 'Token requerido' })
+  }
+
+  const token = authHeader.split(' ')[1]
+
+  if (!token) {
+    return res.status(403).json({ message: 'Token inválido' })
+  }
+
+  jwt.verify(token, secret, (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: 'Token inválido' })
+    }
     req.user = user
     next()
   })

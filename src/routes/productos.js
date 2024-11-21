@@ -1,9 +1,9 @@
-const express = require('express')
-const ProductoController = require('../controllers/ProductoController')
-const handleValidation = require('../middlewares/handleValidation')
-const { productSchemaCreate, productSchemaUpdate } = require('../validations/productValidation')
-const auth = require('../middlewares/auth')
-const router = express.Router()
+import { Router } from 'express'
+import ProductoController from '../controllers/ProductoController.js'
+import handleValidation from '../middlewares/handleValidation.js'
+import { productSchemaCreate, productSchemaUpdate } from '../validations/productValidation.js'
+import auth from '../middlewares/auth.js'
+const router = Router()
 
 /**
  * @swagger
@@ -179,4 +179,4 @@ router.put('/:id', handleValidation(productSchemaUpdate), ProductoController.upd
  */
 router.delete('/:id', auth, ProductoController.delete)
 
-module.exports = router
+export default router

@@ -1,9 +1,9 @@
-const express = require('express')
-const CategoriaController = require('../controllers/CategoriaController')
-const handleValidation = require('../middlewares/handleValidation')
-const { categorySchemaCreate, categorySchemaUpdate } = require('../validations/categoryValidation')
-const auth = require('../middlewares/auth')
-const router = express.Router()
+import { Router } from 'express'
+import CategoriaController from '../controllers/CategoriaController.js'
+import handleValidation from '../middlewares/handleValidation.js'
+import { categorySchemaCreate, categorySchemaUpdate } from '../validations/categoryValidation.js'
+import auth from '../middlewares/auth.js'
+const router = Router()
 
 /**
  * @swagger
@@ -134,4 +134,4 @@ router.put('/:id', auth, handleValidation(categorySchemaUpdate), CategoriaContro
  */
 router.delete('/:id', auth, CategoriaController.delete)
 
-module.exports = router
+export default router

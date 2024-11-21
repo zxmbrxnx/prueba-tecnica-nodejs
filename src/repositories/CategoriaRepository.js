@@ -1,10 +1,10 @@
-const { Categoria, Producto } = require('../../models')
+import db from '../../models/index.js'
 
 class CategoriaRepository {
   async findAll () {
-    return await Categoria.findAll({
+    return await db.Categoria.findAll({
       include: {
-        model: Producto,
+        model: db.Producto,
         as: 'productos',
         attributes: ['id', 'nombre', 'precio', 'stock']
       }
@@ -12,20 +12,20 @@ class CategoriaRepository {
   }
 
   async create (data) {
-    return await Categoria.create(data)
+    return await db.Categoria.create(data)
   }
 
   async findById (id) {
-    return await Categoria.findByPk(id)
+    return await db.Categoria.findByPk(id)
   }
 
   async update (id, data) {
-    return await Categoria.update(data, { where: { id } })
+    return await db.Categoria.update(data, { where: { id } })
   }
 
   async delete (id) {
-    return await Categoria.destroy({ where: { id } })
+    return await db.Categoria.destroy({ where: { id } })
   }
 }
 
-module.exports = new CategoriaRepository()
+export default new CategoriaRepository()

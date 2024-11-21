@@ -1,9 +1,9 @@
-const express = require('express')
-const AuthController = require('../controllers/AuthController')
-const handleValidation = require('../middlewares/handleValidation') // Middleware para validación
-const loginSchema = require('../validations/validarLogin') // Validaciones
+import { Router } from 'express'
+import AuthController from '../controllers/AuthController.js' // Controlador
+import handleValidation from '../middlewares/handleValidation.js' // Middleware para validación
+import loginSchema from '../validations/validarLogin.js' // Validaciones
 // const auth = require('../middlewares/auth')
-const router = express.Router()
+const router = Router()
 
 /**
  * @swagger
@@ -44,4 +44,4 @@ const router = express.Router()
 
 router.post('/', handleValidation(loginSchema), AuthController.login)
 
-module.exports = router
+export default router
