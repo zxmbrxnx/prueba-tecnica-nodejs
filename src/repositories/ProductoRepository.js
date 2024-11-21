@@ -1,8 +1,14 @@
-const { Producto } = require('../../models')
+const { Producto, Categoria } = require('../../models')
 
 class ProductoRepository {
   async findAll () {
-    return await Producto.findAll()
+    return await Producto.findAll({
+      include: {
+        model: Categoria,
+        as: 'categoria',
+        attributes: ['id', 'nombre']
+      }
+    })
   }
 
   async create (data) {
